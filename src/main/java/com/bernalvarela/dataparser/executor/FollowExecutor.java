@@ -22,7 +22,7 @@ public class FollowExecutor extends MainExecutor{
 
   private Integer numberAccess = 0;
 
-  private ConnectionInfo mostAccesedConnectionInfo;
+  private ConnectionInfo mostAccessedConnectionInfo;
 
   public FollowExecutor() {
     super();
@@ -30,7 +30,7 @@ public class FollowExecutor extends MainExecutor{
     hostnamesConnectedToGivenHost = "";
     hostnamesReceivedConnectionsFromGivenHost = "";
     connectionsGenerated = new HashMap<>();
-    mostAccesedConnectionInfo = null;
+    mostAccessedConnectionInfo = null;
   }
 
   @Override
@@ -52,39 +52,38 @@ public class FollowExecutor extends MainExecutor{
 
       if (connectionsGenerated.get(connectionInfo.getOriginHost()) > numberAccess) {
         numberAccess = connectionsGenerated.get(connectionInfo.getOriginHost());
-        mostAccesedConnectionInfo = connectionInfo;
+        mostAccessedConnectionInfo = connectionInfo;
       }
     }
+    printElements(executorParams);
+  }
 
+  private void printElements(ExecutorParams executorParams) {
     if (System.currentTimeMillis() > initTime + OUTPUT) {
-      printElements(executorParams);
+      if (Objects.nonNull(mostAccessedConnectionInfo)) {
+        if (!hostnamesConnectedToGivenHost.isEmpty()) {
+          log.info("Hostnames connected to {}: {} ", executorParams.getHostNames().get(0), hostnamesConnectedToGivenHost);
+        } else {
+          log.warn("{} has no hostnames connected to ", executorParams.getHostNames().get(0));
+        }
+
+        if (!hostnamesReceivedConnectionsFromGivenHost.isEmpty()) {
+          log.info("Hostnames receiving connections from {}: {} ",
+              executorParams.getHostNames().get(1),
+              hostnamesReceivedConnectionsFromGivenHost
+          );
+        } else {
+          log.warn("{} has not connected to any host ", executorParams.getHostNames().get(1));
+        }
+        log.info("Hostname {} has generated more connections: {} ", mostAccessedConnectionInfo.getOriginHost(), numberAccess);
+      } else {
+        log.warn("Log file not updated");
+      }
       initTime = System.currentTimeMillis();
       hostnamesConnectedToGivenHost = "";
       hostnamesReceivedConnectionsFromGivenHost = "";
       connectionsGenerated = new HashMap<>();
-      mostAccesedConnectionInfo = null;
-    }
-  }
-
-  private void printElements(ExecutorParams executorParams) {
-    if (Objects.nonNull(mostAccesedConnectionInfo)) {
-      if (!hostnamesConnectedToGivenHost.isEmpty()) {
-        log.info("Hostnames connected to {}: {} ", executorParams.getHostNames().get(0), hostnamesConnectedToGivenHost);
-      } else {
-        log.warn("{} has no hostnames connected to ", executorParams.getHostNames().get(0));
-      }
-
-      if (!hostnamesReceivedConnectionsFromGivenHost.isEmpty()) {
-        log.info("Hostnames receiving connections from {}: {} ",
-            executorParams.getHostNames().get(1),
-            hostnamesReceivedConnectionsFromGivenHost
-        );
-      } else {
-        log.warn("{} has not connected to any host ", executorParams.getHostNames().get(1));
-      }
-      log.info("Hostname {} has generated more connections: {} ", mostAccesedConnectionInfo.getOriginHost(), numberAccess);
-    } else {
-      log.warn("Log file not updated");
+      mostAccessedConnectionInfo = null;
     }
   }
 }
