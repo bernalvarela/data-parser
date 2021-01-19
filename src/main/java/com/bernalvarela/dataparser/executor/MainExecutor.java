@@ -1,37 +1,39 @@
 package com.bernalvarela.dataparser.executor;
 
+import com.bernalvarela.dataparser.entity.ConnectionInfo;
+import com.bernalvarela.dataparser.executor.vo.ExecutorParams;
 import com.bernalvarela.dataparser.service.ParserService;
-import com.bernalvarela.dataparser.vo.ConnectionInfoVO;
 import java.io.BufferedReader;
-import java.io.File;
-import java.io.FileReader;
+import java.io.FileInputStream;
 import java.io.IOException;
+import java.io.InputStreamReader;
 import java.util.Objects;
 
-public class MainExecutor {
+public abstract class MainExecutor {
 
-  private static String SPACE = " ";
-
-  public void execute() {
+  public void execute(ExecutorParams executorParams) {
     ParserService parserService = new ParserService();
-    File file = new File("/home/bernal/Descargas/input-file-10000.txt");
     try {
-      BufferedReader br = new BufferedReader(new FileReader(file));
+      FileInputStream fstream = new FileInputStream(executorParams.getFileName());
+      BufferedReader br = new BufferedReader(new InputStreamReader(fstream));
       String st;
       while (true) {
-        if (Objects.isNull(st = br.readLine())) {
-          break;
+        st = br.readLine();
+        if (Objects.isNull(st)) {
+          if (!executorParams.isFollow()) {
+            break;
+          } else {
+            doLogic(executorParams, null);
+          }
+        } else {
+          doLogic(executorParams,  parserService.parseLine(st));
         }
-        ConnectionInfoVO connectionInfoVO = parserService.parseLine(st);
-        System.out.println(connectionInfoVO.getTimestamp().toString()
-            .concat(SPACE)
-            .concat(connectionInfoVO.getOriginHost())
-            .concat(SPACE)
-            .concat(connectionInfoVO.getDestinationHost())
-        );
       }
     } catch (IOException e) {
         e.printStackTrace();
     }
   }
+
+  public abstract void doLogic(ExecutorParams executorParams, ConnectionInfo connectionInfo);
+
 }

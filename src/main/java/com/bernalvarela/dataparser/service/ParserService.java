@@ -1,14 +1,14 @@
 package com.bernalvarela.dataparser.service;
 
+import com.bernalvarela.dataparser.entity.ConnectionInfo;
 import com.bernalvarela.dataparser.exception.InvalidLineFormat;
-import com.bernalvarela.dataparser.vo.ConnectionInfoVO;
 
 public class ParserService {
 
-  public ConnectionInfoVO parseLine(String line) {
+  public ConnectionInfo parseLine(String line) {
     String[] values = line.split(" ");
     validateValues(values);
-    return ConnectionInfoVO.builder()
+    return ConnectionInfo.builder()
         .timestamp(Long.parseLong(values[0]))
         .originHost(values[1])
         .destinationHost(values[2])

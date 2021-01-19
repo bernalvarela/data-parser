@@ -1,11 +1,11 @@
-package com.bernalvarela.dataparser.vo;
+package com.bernalvarela.dataparser.entity;
 
 import lombok.Builder;
 import lombok.Getter;
 
 @Getter
 @Builder
-public class ConnectionInfoVO {
+public class ConnectionInfo {
 
   private final Long timestamp;
 
