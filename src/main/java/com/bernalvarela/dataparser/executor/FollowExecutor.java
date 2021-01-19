@@ -12,7 +12,7 @@ public class FollowExecutor extends MainExecutor{
 
   private long initTime;
 
-  private static final long OUTPUT = 10000;
+  private static final long OUTPUT_TIME = 3600000;
 
   private String hostnamesConnectedToGivenHost;
 
@@ -59,7 +59,7 @@ public class FollowExecutor extends MainExecutor{
   }
 
   private void printElements(ExecutorParams executorParams) {
-    if (System.currentTimeMillis() > initTime + OUTPUT) {
+    if (System.currentTimeMillis() > initTime + OUTPUT_TIME) {
       if (Objects.nonNull(mostAccessedConnectionInfo)) {
         if (!hostnamesConnectedToGivenHost.isEmpty()) {
           log.info("Hostnames connected to {}: {} ", executorParams.getHostNames().get(0), hostnamesConnectedToGivenHost);
