@@ -22,5 +22,4 @@ public class ParamsParserServiceTest {
     ParamsParserService paramsParserService = new ParamsParserService();
     assertThat(paramsParserService.parseParams(params)).usingRecursiveComparison().isEqualTo(expectedValue);
   }
-
 }

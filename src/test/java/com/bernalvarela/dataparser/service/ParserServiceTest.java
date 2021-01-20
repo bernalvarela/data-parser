@@ -22,5 +22,4 @@ public class ParserServiceTest {
     ParserService parserService = new ParserService();
     assertThat(parserService.parseLine(line)).usingRecursiveComparison().isEqualTo(expectedValue);
   }
-
 }
