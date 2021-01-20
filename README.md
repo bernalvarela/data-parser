@@ -75,7 +75,7 @@ Install openjdk on Fedora, Oracle Linux, Red Hat Enterprise Linux, etc.,
  su -c "yum install java-11-openjdk-devel"
 ```
 
-For windows and mac and you can:
+For windows and mac you can:
 
 * download oracle JDK 11 setup from [here](https://www.oracle.com/java/technologies/javase-jdk11-downloads.html)
 * using chocolatey (windows):
