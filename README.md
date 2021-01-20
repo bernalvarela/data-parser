@@ -39,7 +39,9 @@ java -jar data-parser-VERSION-jar-with-dependencies.jar filename -i init_datetim
 - end_datetime: Timestamp value. (Numeric)
 
 #### Example
+```bash
 java -jar data-parser-VERSION-jar-with-dependencies.jar /home/Descargas/input-file-10000.txt -i 1565647204351 -e 1565733598341 -h Jenyssa
+```
 
 #### 2. Unlimited Input Parser
 The tool should both parse previously written log files and terminate or collect input from a new log
@@ -62,7 +64,9 @@ java -jar data-parser-VERSION-jar-with-dependencies.jar filename -f -h host1, ho
 - filename: Route to log file
 
 #### Example
+```bash
 java -jar data-parser-VERSION-jar-with-dependencies.jar /home/Descargas/input-file-10000.txt -f -h "Ramondo, Haileen"
+```
 
 ### Setup
 
