@@ -34,6 +34,9 @@ To run this option we run this command from command line
 java -jar data-parser-VERSION-jar-with-dependencies.jar filename -i init_datetime -e end_datetime -h host
 ```
 
+- init_datetime: Timestamp value. (Numeric)
+- end_datetime: Timestamp value. (Numeric)
+
 #### 2. Unlimited Input Parser
 The tool should both parse previously written log files and terminate or collect input from a new log
 file while it's being written and run indefinitely.
