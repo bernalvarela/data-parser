@@ -1,4 +1,4 @@
-package com.bernalvarela.dataparser.executor;
+package com.bernalvarela.dataparser.handler;
 
 import com.bernalvarela.dataparser.entity.ConnectionInfo;
 import com.bernalvarela.dataparser.executor.vo.ExecutorParams;
@@ -8,7 +8,7 @@ import java.util.Objects;
 import lombok.extern.log4j.Log4j2;
 
 @Log4j2
-public class FollowExecutor extends MainExecutor{
+public class FollowHandler extends MainHandler {
 
   private long initTime;
 
@@ -24,7 +24,7 @@ public class FollowExecutor extends MainExecutor{
 
   private ConnectionInfo mostAccessedConnectionInfo;
 
-  public FollowExecutor() {
+  public FollowHandler() {
     super();
     initTime = System.currentTimeMillis();
     hostnamesConnectedToGivenHost = "";

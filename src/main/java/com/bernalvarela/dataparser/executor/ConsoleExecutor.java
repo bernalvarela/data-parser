@@ -1,6 +1,8 @@
 package com.bernalvarela.dataparser.executor;
 
 import com.bernalvarela.dataparser.executor.vo.ExecutorParams;
+import com.bernalvarela.dataparser.handler.FollowHandler;
+import com.bernalvarela.dataparser.handler.NoFollowHandler;
 import com.beust.jcommander.JCommander;
 import lombok.extern.log4j.Log4j2;
 
@@ -15,10 +17,10 @@ public class ConsoleExecutor {
         .parse(args);
     if (!executorParams.isFollow()) {
       log.info("NoFollowExecutor");
-      new NoFollowExecutor().execute(executorParams);
+      new NoFollowHandler().execute(executorParams);
     } else {
       log.info("FollowExecutor");
-      new FollowExecutor().execute(executorParams);
+      new FollowHandler().execute(executorParams);
     }
   }
 

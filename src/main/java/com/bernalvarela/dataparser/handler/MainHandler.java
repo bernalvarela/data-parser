@@ -1,4 +1,4 @@
-package com.bernalvarela.dataparser.executor;
+package com.bernalvarela.dataparser.handler;
 
 import com.bernalvarela.dataparser.entity.ConnectionInfo;
 import com.bernalvarela.dataparser.executor.vo.ExecutorParams;
@@ -9,7 +9,7 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.util.Objects;
 
-public abstract class MainExecutor {
+public abstract class MainHandler {
 
   public void execute(ExecutorParams executorParams) {
     ParserService parserService = new ParserService();
