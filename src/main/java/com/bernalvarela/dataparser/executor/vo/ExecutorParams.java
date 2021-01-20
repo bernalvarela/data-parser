@@ -3,9 +3,15 @@ package com.bernalvarela.dataparser.executor.vo;
 import com.bernalvarela.dataparser.converter.StringConverter;
 import com.beust.jcommander.Parameter;
 import java.util.List;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 @Data
+@NoArgsConstructor
+@AllArgsConstructor
+@Builder
 public class ExecutorParams {
 
   @Parameter(required = true, description = "Log file name")
