@@ -1,6 +1,6 @@
 package com.bernalvarela.dataparser;
 
-import com.bernalvarela.dataparser.executor.ConsoleExecutor;
+import com.bernalvarela.dataparser.console.executor.ConsoleExecutor;
 import com.beust.jcommander.ParameterException;
 import lombok.extern.log4j.Log4j2;
 
